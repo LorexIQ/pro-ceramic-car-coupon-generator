@@ -6,7 +6,7 @@
 
 ```bash
 npm install            # зависимости
-npm run dev            # dev-сервер: http://localhost:5173/pro-ceramic-car-coupon-generator/
+npm run dev            # dev-сервер: http://localhost:5173/
 npm run build          # vue-tsc -b + vite build + копия dist/index.html → dist/404.html
 npm run preview        # прод-превью собранного dist
 ```

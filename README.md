@@ -3,7 +3,7 @@
 Онлайн-генератор подарочных купонов: точное повторение фирменного макета,
 редактор заголовка, телефон, гос номер, HMAC-подпись купонов и страница проверки.
 
-**Сайт:** https://lorexiq.github.io/pro-ceramic-car-coupon-generator/
+**Сайт:** https://pro-ceramic-car-coupon-generator.liq.su
 
 ## Разработка
 
