@@ -1,0 +1,24 @@
+{
+  "name": "pro-ceramic-car-coupon-generator",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run typescript && vite build && node -e \"require('fs').copyFileSync('dist/index.html','dist/404.html')\"",
+    "preview": "vite preview",
+    "typescript": "vue-tsc -b"
+  },
+  "dependencies": {
+    "idb-keyval": "^6.2.1",
+    "imask": "^7.6.1",
+    "naive-ui": "^2.41.0",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "typescript": "~5.7.2",
+    "vue-tsc": "^2.2.0"
+  }
+}
