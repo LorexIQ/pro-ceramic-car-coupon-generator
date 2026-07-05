@@ -64,6 +64,7 @@ async function run(fn: () => Promise<void>) {
 <style scoped>
 .generator-page {
   height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
 }
