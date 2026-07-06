@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { NButton } from 'naive-ui';
-import { state } from '../../store';
+
 import { useSignatureKey } from '../../composables/useSignatureKey';
+import { state } from '../../store';
 import EditorSection from '../ui/EditorSection.vue';
 import KeyStatusTag from '../ui/KeyStatusTag.vue';
 import KeyUploadButton from '../ui/KeyUploadButton.vue';
@@ -16,7 +17,9 @@ const { createAndDownloadKey, forgetKey } = useSignatureKey();
         <key-status-tag />
         <n-button size="small" quaternary @click="forgetKey">Забыть ключ</n-button>
       </div>
-      <p class="signature-section__hint">Код купона генерируется в момент сохранения PNG или печати — у каждого купона он уникальный.</p>
+      <p class="signature-section__hint">
+        Код купона генерируется в момент сохранения PNG или печати — у каждого купона он уникальный.
+      </p>
     </template>
     <template v-else>
       <div class="signature-section__status">
@@ -24,7 +27,9 @@ const { createAndDownloadKey, forgetKey } = useSignatureKey();
       </div>
       <div class="signature-section__row">
         <key-upload-button />
-        <n-button size="small" quaternary @click="createAndDownloadKey">Создать файл подписи</n-button>
+        <n-button size="small" quaternary @click="createAndDownloadKey"
+          >Создать файл подписи</n-button
+        >
       </div>
     </template>
   </editor-section>
@@ -33,10 +38,11 @@ const { createAndDownloadKey, forgetKey } = useSignatureKey();
 <style scoped>
 .signature-section__row {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   align-items: center;
+
   margin-bottom: 8px;
-  flex-wrap: wrap;
 }
 
 .signature-section__status {
@@ -45,6 +51,7 @@ const { createAndDownloadKey, forgetKey } = useSignatureKey();
 
 .signature-section__hint {
   margin: 0;
+
   font-size: 12px;
   color: var(--text-dim);
 }

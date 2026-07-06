@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { NButton } from 'naive-ui';
+
 import { state } from '../../store';
 import KeyStatusTag from '../ui/KeyStatusTag.vue';
 
@@ -11,8 +12,22 @@ const emit = defineEmits<{ print: []; export: [] }>();
   <div class="coupon-actions">
     <key-status-tag />
     <div class="coupon-actions__buttons">
-      <n-button size="small" secondary :loading="busy" :disabled="!state.keyLoaded" @click="emit('print')">Печать</n-button>
-      <n-button size="small" type="primary" :loading="busy" :disabled="!state.keyLoaded" @click="emit('export')">Скачать PNG</n-button>
+      <n-button
+        size="small"
+        secondary
+        :loading="busy"
+        :disabled="!state.keyLoaded"
+        @click="emit('print')"
+        >Печать</n-button
+      >
+      <n-button
+        size="small"
+        type="primary"
+        :loading="busy"
+        :disabled="!state.keyLoaded"
+        @click="emit('export')"
+        >Скачать PNG</n-button
+      >
     </div>
   </div>
 </template>
@@ -21,6 +36,7 @@ const emit = defineEmits<{ print: []; export: [] }>();
 .coupon-actions {
   display: flex;
   gap: 8px;
+
   align-items: center;
 }
 

@@ -7,11 +7,11 @@ export interface TitleLine {
   text: string;
   weight: FontWeight;
   width: FontWidth;
-  size: number;         // px (эффективный, как в PSD)
-  opacity: number;      // 0..1
-  color: string;        // hex
+  size: number; // px (эффективный, как в PSD)
+  opacity: number; // 0..1
+  color: string; // hex
   underline: boolean;
-  tracking: number;     // единицы Photoshop (1/1000 em)
+  tracking: number; // единицы Photoshop (1/1000 em)
   spacingBefore: number; // px, смещение базовой линии от предыдущей строки
   align: Align;
 }
@@ -35,7 +35,7 @@ export interface SvgTextSpec {
   size: number;
   family?: string;
   weight?: number;
-  width?: number;    // font-stretch %
+  width?: number; // font-stretch %
   tracking?: number; // единицы Photoshop (1/1000 em)
   opacity?: number;
   color?: string;
@@ -50,7 +50,7 @@ export interface PsdText {
   size: number;
   family: 'Bahnschrift' | 'Arial';
   weight: number;
-  width: number;      // font-stretch %
+  width: number; // font-stretch %
   tracking: number;
   opacity: number;
   color: string;

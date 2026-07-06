@@ -12,13 +12,18 @@ const overrides: GlobalThemeOverrides = {
     cardColor: '#161616',
     modalColor: '#1a1a1a',
     borderColor: '#2a2a2a',
-    borderRadius: '6px'
-  }
+    borderRadius: '6px',
+  },
 };
 </script>
 
 <template>
-  <n-config-provider :theme="darkTheme" :theme-overrides="overrides" :locale="ruRU" :date-locale="dateRuRU">
+  <n-config-provider
+    :theme="darkTheme"
+    :theme-overrides="overrides"
+    :locale="ruRU"
+    :date-locale="dateRuRU"
+  >
     <n-message-provider>
       <router-view />
     </n-message-provider>

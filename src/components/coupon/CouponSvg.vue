@@ -2,29 +2,51 @@
 // ЧИСТЫЙ рендер купона: store → SVG #coupon-svg.
 // Экспорт PNG и печать клонируют этот же узел — расхождение превью/экспорт структурно невозможно.
 import { computed } from 'vue';
-import { state } from '../../store';
+
 import {
-  CANVAS_W, CANVAS_H, IMAGES, STATIC_TEXTS, PHONE_TEXT, DEFAULT_PHONE,
-  PLATE_SLOTS, PLATE_IMAGE, TITLE_BASE_BASELINE,
-  TITLE_CENTER_X, TITLE_LEFT_X, TITLE_RIGHT_X, COUPON_CODE_POS
+  CANVAS_W,
+  CANVAS_H,
+  IMAGES,
+  STATIC_TEXTS,
+  PHONE_TEXT,
+  DEFAULT_PHONE,
+  PLATE_SLOTS,
+  PLATE_IMAGE,
+  TITLE_BASE_BASELINE,
+  TITLE_CENTER_X,
+  TITLE_LEFT_X,
+  TITLE_RIGHT_X,
+  COUPON_CODE_POS,
 } from '../../constants/layout';
+import { state } from '../../store';
 import type { Align, SvgTextSpec } from '../../types';
 import { formatPhone, plateChars } from '../../utils/format';
+
 import CouponText from './CouponText.vue';
 
-const TITLE_X: Record<Align, number> = { left: TITLE_LEFT_X, center: TITLE_CENTER_X, right: TITLE_RIGHT_X };
-const TITLE_ANCHOR: Record<Align, 'start' | 'middle' | 'end'> = { left: 'start', center: 'middle', right: 'end' };
+const TITLE_X: Record<Align, number> = {
+  left: TITLE_LEFT_X,
+  center: TITLE_CENTER_X,
+  right: TITLE_RIGHT_X,
+};
+const TITLE_ANCHOR: Record<Align, 'start' | 'middle' | 'end'> = {
+  left: 'start',
+  center: 'middle',
+  right: 'end',
+};
 
 const phoneText = computed<SvgTextSpec>(() => ({
   ...PHONE_TEXT,
-  text: state.phoneDigits.length === 10 ? formatPhone(state.phoneDigits) : DEFAULT_PHONE
+  text: state.phoneDigits.length === 10 ? formatPhone(state.phoneDigits) : DEFAULT_PHONE,
 }));
 
 // Заголовок: базовая линия каждой строки = предыдущая + её spacingBefore
 const titleTexts = computed<{ id: string; spec: SvgTextSpec }[]>(() => {
   let baseline = TITLE_BASE_BASELINE;
+
   return state.title.lines.map((l) => {
     baseline += l.spacingBefore;
+
     return {
       id: l.id,
       spec: {
@@ -38,8 +60,8 @@ const titleTexts = computed<{ id: string; spec: SvgTextSpec }[]>(() => {
         opacity: l.opacity,
         color: l.color,
         anchor: TITLE_ANCHOR[l.align],
-        underline: l.underline
-      }
+        underline: l.underline,
+      },
     };
   });
 });
@@ -47,7 +69,9 @@ const titleTexts = computed<{ id: string; spec: SvgTextSpec }[]>(() => {
 // Гос номер: null, пока номер не введён полностью
 const plateTexts = computed<SvgTextSpec[] | null>(() => {
   const chars = plateChars(state.plateRaw);
+
   if (!chars) return null;
+
   return chars.map(({ char, slot }) => ({
     text: char,
     x: PLATE_SLOTS[slot].cx,
@@ -56,7 +80,7 @@ const plateTexts = computed<SvgTextSpec[] | null>(() => {
     family: 'RoadNumbers',
     tracking: 10,
     color: '#000000',
-    anchor: 'middle' as const
+    anchor: 'middle' as const,
   }));
 });
 
@@ -65,7 +89,7 @@ const plateImageHref = computed(() => (plateTexts.value ? PLATE_IMAGE.filled : P
 const codeText = computed<SvgTextSpec | null>(() =>
   state.couponCode
     ? { ...COUPON_CODE_POS, text: state.couponCode, weight: 300, anchor: 'middle' }
-    : null
+    : null,
 );
 </script>
 

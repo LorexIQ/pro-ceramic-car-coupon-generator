@@ -8,5 +8,5 @@ export const STORAGE_KEYS = {
   /** localStorage: пользовательские пресеты TitlePreset[] */
   userPresets: 'pcc:userPresets',
   /** IndexedDB (idb-keyval): JSON файла подписи */
-  signatureKey: 'pcc:sigkey'
+  signatureKey: 'pcc:sigkey',
 } as const;

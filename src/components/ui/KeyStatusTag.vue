@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // Индикатор наличия ключа подписи — один и тот же в навбаре, футере, редакторе и на странице проверки
 import { NTag } from 'naive-ui';
+
 import { state } from '../../store';
 </script>
 

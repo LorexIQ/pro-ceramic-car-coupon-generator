@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { NInput, NFormItem } from 'naive-ui';
+
 import { usePhone } from '../../composables/usePhone';
 import EditorSection from '../ui/EditorSection.vue';
 

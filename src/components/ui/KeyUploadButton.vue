@@ -1,7 +1,8 @@
 <script setup lang="ts">
 // Кнопка «Загрузить файл подписи» + скрытый input и обратная связь через message
-import { ref } from 'vue';
 import { NButton, useMessage } from 'naive-ui';
+import { ref } from 'vue';
+
 import { useSignatureKey } from '../../composables/useSignatureKey';
 
 const { loadKeyFile } = useSignatureKey();
@@ -11,9 +12,13 @@ const fileInput = ref<HTMLInputElement>();
 async function onFile(e: Event) {
   const input = e.target as HTMLInputElement;
   const file = input.files?.[0];
+
   input.value = '';
+
   if (!file) return;
+
   const ok = await loadKeyFile(file);
+
   if (ok) message.success('Файл подписи загружен');
   else message.error('Это не файл подписи ProCeramicCar');
 }

@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+
 import GeneratorPage from './pages/GeneratorPage.vue';
 import VerifyPage from './pages/VerifyPage.vue';
 
@@ -7,6 +8,6 @@ export const router = createRouter({
   routes: [
     { path: '/', component: GeneratorPage },
     { path: '/verify', component: VerifyPage },
-    { path: '/:pathMatch(.*)*', redirect: '/' }
-  ]
+    { path: '/:pathMatch(.*)*', redirect: '/' },
+  ],
 });

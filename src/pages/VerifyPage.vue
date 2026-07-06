@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { NButton, NInput, NAlert } from 'naive-ui';
+
 import AppNavbar from '../components/layout/AppNavbar.vue';
 import KeyStatusTag from '../components/ui/KeyStatusTag.vue';
 import KeyUploadButton from '../components/ui/KeyUploadButton.vue';
@@ -39,8 +40,8 @@ const { display, valid, result, issuedStr, onInput, confirm } = useCouponCodeInp
 <style scoped>
 .verify-page__container {
   max-width: 480px;
-  margin: 40px auto;
   padding: 0 16px;
+  margin: 40px auto;
 }
 
 .verify-page__heading {
@@ -49,8 +50,8 @@ const { display, valid, result, issuedStr, onInput, confirm } = useCouponCodeInp
 
 .verify-page__key-row {
   display: flex;
-  align-items: center;
   gap: 12px;
+  align-items: center;
 }
 
 .verify-page__code {

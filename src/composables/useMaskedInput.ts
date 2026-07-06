@@ -1,5 +1,5 @@
-import { ref, type Ref } from 'vue';
 import IMask, { type FactoryOpts } from 'imask';
+import { ref, type Ref } from 'vue';
 
 export interface MaskedInput {
   /** Отформатированная строка для :value у n-input */
@@ -14,7 +14,10 @@ export interface MaskedInput {
 // n-input отдаёт всю строку через update:value, она прогоняется через маску
 // целиком, результат возвращается в :value. Так нет конфликта с внутренним
 // обработчиком input у naive-ui.
-export function useMaskedInput(opts: FactoryOpts, normalize?: (raw: string) => string): MaskedInput {
+export function useMaskedInput(
+  opts: FactoryOpts,
+  normalize?: (raw: string) => string,
+): MaskedInput {
   const masked = IMask.createMask(opts);
   const display = ref('');
   const unmasked = ref('');

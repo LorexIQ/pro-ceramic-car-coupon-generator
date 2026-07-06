@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { NButton } from 'naive-ui';
-import { state } from '../../store';
-import { lineId } from '../../constants/layout';
+
 import { useTitleStorage } from '../../composables/useTitleStorage';
+import { lineId } from '../../constants/layout';
+import { state } from '../../store';
 import EditorSection from '../ui/EditorSection.vue';
+
 import TitleLineEditor from './TitleLineEditor.vue';
 
 useTitleStorage();
@@ -20,7 +22,7 @@ function addLine() {
     underline: false,
     tracking: -40,
     spacingBefore: 100,
-    align: 'center'
+    align: 'center',
   });
 }
 
@@ -31,6 +33,7 @@ function removeLine(i: number) {
 function moveLine(i: number, dir: -1 | 1) {
   const lines = state.title.lines;
   const [l] = lines.splice(i, 1);
+
   lines.splice(i + dir, 0, l);
 }
 </script>
@@ -57,6 +60,7 @@ function moveLine(i: number, dir: -1 | 1) {
   display: flex;
   flex-direction: column;
   gap: 10px;
+
   margin-bottom: 10px;
 }
 </style>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { NInput } from 'naive-ui';
+
 import { usePlate } from '../../composables/usePlate';
 import EditorSection from '../ui/EditorSection.vue';
 

@@ -2,6 +2,7 @@
 // Единый рендер текстового узла купона из SvgTextSpec.
 // Дефолты соответствуют самому частому случаю: Bahnschrift, белый, anchor start.
 import { computed } from 'vue';
+
 import type { SvgTextSpec } from '../../types';
 import { letterSpacing } from '../../utils/format';
 
@@ -23,5 +24,6 @@ const spacing = computed(() => letterSpacing(props.spec.tracking ?? 0, props.spe
     :fill="spec.color ?? '#ffffff'"
     :text-anchor="spec.anchor ?? 'start'"
     :text-decoration="spec.underline ? 'underline' : 'none'"
-  >{{ spec.text }}</text>
+    >{{ spec.text }}</text
+  >
 </template>

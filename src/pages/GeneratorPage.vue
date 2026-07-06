@@ -1,18 +1,19 @@
 <script setup lang="ts">
-import { nextTick, ref } from 'vue';
 import { useMessage } from 'naive-ui';
-import AppNavbar from '../components/layout/AppNavbar.vue';
-import AppFooter from '../components/layout/AppFooter.vue';
-import CouponSvg from '../components/coupon/CouponSvg.vue';
+import { nextTick, ref } from 'vue';
+
 import CouponActions from '../components/coupon/CouponActions.vue';
-import PresetsSection from '../components/editor/PresetsSection.vue';
-import TitleSection from '../components/editor/TitleSection.vue';
+import CouponSvg from '../components/coupon/CouponSvg.vue';
 import PhoneSection from '../components/editor/PhoneSection.vue';
 import PlateSection from '../components/editor/PlateSection.vue';
+import PresetsSection from '../components/editor/PresetsSection.vue';
 import SignatureSection from '../components/editor/SignatureSection.vue';
-import { exportPng, printCoupon } from '../utils/export';
-import { state } from '../store';
+import TitleSection from '../components/editor/TitleSection.vue';
+import AppFooter from '../components/layout/AppFooter.vue';
+import AppNavbar from '../components/layout/AppNavbar.vue';
 import { useSignatureKey } from '../composables/useSignatureKey';
+import { state } from '../store';
+import { exportPng, printCoupon } from '../utils/export';
 
 const busy = ref(false);
 const message = useMessage();
@@ -21,16 +22,21 @@ const { regenerateCode } = useSignatureKey();
 async function run(fn: () => Promise<void>) {
   if (!state.keyLoaded) {
     message.error('Сначала загрузите файл подписи — купон выдаётся только с кодом');
+
     return;
   }
+
   busy.value = true;
+
   try {
     await regenerateCode(); // уникальный код на момент выдачи купона
     await nextTick(); // SVG успел отрисовать код перед экспортом
     await fn();
+  } catch {
+    message.error('Не удалось подготовить купон — попробуйте ещё раз');
+  } finally {
+    busy.value = false;
   }
-  catch { message.error('Не удалось подготовить купон — попробуйте ещё раз'); }
-  finally { busy.value = false; }
 }
 </script>
 
@@ -63,63 +69,76 @@ async function run(fn: () => Promise<void>) {
 
 <style scoped>
 .generator-page {
-  height: 100vh;
-  height: 100dvh;
   display: flex;
   flex-direction: column;
+
+  height: 100dvh;
 }
 
 .generator-page__content {
-  flex: 1;
   display: flex;
+  flex: 1;
+
   min-height: 0;
 }
 
 .generator-page__editor {
   display: flex;
+  flex-shrink: 0;
   flex-direction: column;
   gap: 16px;
+
   width: 360px;
-  flex-shrink: 0;
-  overflow-y: auto;
   padding: 16px;
+
+  overflow-y: auto;
+
   background: var(--panel);
   border-right: 1px solid var(--border);
 }
 
 .generator-page__main {
-  flex: 1;
   display: flex;
+
+  flex: 1;
   flex-direction: column;
+
   min-width: 0;
   min-height: 0;
 }
 
 .generator-page__preview {
-  flex: 1;
   display: flex;
+
+  flex: 1;
+
   align-items: center;
   justify-content: center;
-  padding: 24px;
+
   min-height: 0;
+
+  padding: 24px;
+
   overflow: auto;
 }
 
 .generator-page__coupon {
-  max-height: 100%;
+  width: auto;
   max-width: 100%;
   height: 100%;
-  width: auto;
+  max-height: 100%;
 }
 
 @media (max-width: 900px) {
   .generator-page__content {
     flex-direction: column;
+
     overflow-y: auto;
   }
 
   .generator-page__editor {
     width: 100%;
+
     border-right: none;
     border-bottom: 1px solid var(--border);
   }
@@ -130,8 +149,11 @@ async function run(fn: () => Promise<void>) {
 
   .generator-page__preview {
     flex: none;
+
     height: auto;
+
     padding: 12px;
+
     overflow: visible;
   }
 

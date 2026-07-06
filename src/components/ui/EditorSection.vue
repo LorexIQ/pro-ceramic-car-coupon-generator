@@ -13,6 +13,7 @@ defineProps<{ title: string }>();
 <style scoped>
 .editor-section__title {
   margin: 0 0 8px;
+
   font-size: 14px;
   color: var(--text-dim);
   text-transform: uppercase;

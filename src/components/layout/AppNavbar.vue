@@ -8,7 +8,7 @@ const router = useRouter();
 // Единый источник пунктов навигации: кнопки на десктопе, n-dropdown в burger-меню
 const NAV_ITEMS = [
   { label: 'Генератор', key: '/' },
-  { label: 'Проверка купона', key: '/verify' }
+  { label: 'Проверка купона', key: '/verify' },
 ];
 
 function onMenuSelect(key: string | number) {
@@ -28,7 +28,8 @@ function onMenuSelect(key: string | number) {
           size="small"
           :type="route.path === item.key ? 'primary' : 'default'"
           @click="router.push(item.key)"
-        >{{ item.label }}</n-button>
+          >{{ item.label }}</n-button
+        >
       </nav>
     </div>
     <div class="app-navbar__actions"><slot name="actions" /></div>
@@ -43,24 +44,28 @@ function onMenuSelect(key: string | number) {
   position: sticky;
   top: 0;
   z-index: 10;
+
   display: flex;
+  gap: 12px;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+
   padding: 10px 16px;
+
   background: var(--panel);
   border-bottom: 1px solid var(--border);
 }
 
 .app-navbar__nav {
   display: flex;
-  align-items: center;
   gap: 8px;
+  align-items: center;
 }
 
 .app-navbar__brand {
-  font-weight: 600;
   margin-right: 8px;
+
+  font-weight: 600;
 }
 
 .app-navbar__links {
@@ -76,6 +81,7 @@ function onMenuSelect(key: string | number) {
 
 .app-navbar__burger {
   display: none;
+
   font-size: 18px;
 }
 

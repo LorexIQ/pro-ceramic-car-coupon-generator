@@ -11,5 +11,7 @@ export function readLocal(key: string): string | null {
 export function writeLocal(key: string, value: string): void {
   try {
     localStorage.setItem(key, value);
-  } catch { /* приватный режим — работаем без persist */ }
+  } catch {
+    /* приватный режим — работаем без persist */
+  }
 }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { NButton, NInput, NTag } from 'naive-ui';
+import { ref } from 'vue';
+
 import { usePresets } from '../../composables/usePresets';
 import EditorSection from '../ui/EditorSection.vue';
 
@@ -23,11 +24,19 @@ function save() {
         class="presets-section__item"
         @close="remove(p.name)"
         @click="apply(p)"
-      >{{ p.name }}</n-tag>
+        >{{ p.name }}</n-tag
+      >
     </div>
     <div class="presets-section__save-row">
-      <n-input v-model:value="newName" size="small" placeholder="Имя нового пресета" @keyup.enter="save" />
-      <n-button size="small" secondary :disabled="!newName.trim()" @click="save">Сохранить</n-button>
+      <n-input
+        v-model:value="newName"
+        size="small"
+        placeholder="Имя нового пресета"
+        @keyup.enter="save"
+      />
+      <n-button size="small" secondary :disabled="!newName.trim()" @click="save"
+        >Сохранить</n-button
+      >
     </div>
   </editor-section>
 </template>
@@ -37,6 +46,7 @@ function save() {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+
   margin-bottom: 8px;
 }
 
