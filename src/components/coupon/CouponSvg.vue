@@ -100,42 +100,51 @@ const codeText = computed<SvgTextSpec | null>(() =>
     :viewBox="`0 0 ${CANVAS_W} ${CANVAS_H}`"
     :width="CANVAS_W"
     :height="CANVAS_H"
+    style="overflow: hidden"
   >
-    <image
-      v-for="img in IMAGES"
-      :key="img.href"
-      :href="img.href"
-      :x="img.x"
-      :y="img.y"
-      :width="img.w"
-      :height="img.h"
-      :opacity="img.opacity"
-    />
+    <defs>
+      <clipPath id="coupon-canvas-clip">
+        <rect x="0" y="0" :width="CANVAS_W" :height="CANVAS_H" />
+      </clipPath>
+    </defs>
 
-    <!-- Плашка гос номера: с разметкой слотов, пока номер не введён полностью -->
-    <image
-      :href="plateImageHref"
-      :x="PLATE_IMAGE.x"
-      :y="PLATE_IMAGE.y"
-      :width="PLATE_IMAGE.w"
-      :height="PLATE_IMAGE.h"
-      :opacity="PLATE_IMAGE.opacity"
-    />
+    <g clip-path="url(#coupon-canvas-clip)">
+      <image
+        v-for="img in IMAGES"
+        :key="img.href"
+        :href="img.href"
+        :x="img.x"
+        :y="img.y"
+        :width="img.w"
+        :height="img.h"
+        :opacity="img.opacity"
+      />
 
-    <coupon-text v-for="t in STATIC_TEXTS" :key="t.text" :spec="t" />
+      <!-- Плашка гос номера: с разметкой слотов, пока номер не введён полностью -->
+      <image
+        :href="plateImageHref"
+        :x="PLATE_IMAGE.x"
+        :y="PLATE_IMAGE.y"
+        :width="PLATE_IMAGE.w"
+        :height="PLATE_IMAGE.h"
+        :opacity="PLATE_IMAGE.opacity"
+      />
 
-    <!-- Заголовок -->
-    <coupon-text v-for="l in titleTexts" :key="l.id" :spec="l.spec" />
+      <coupon-text v-for="t in STATIC_TEXTS" :key="t.text" :spec="t" />
 
-    <!-- Телефон -->
-    <coupon-text :spec="phoneText" />
+      <!-- Заголовок -->
+      <coupon-text v-for="l in titleTexts" :key="l.id" :spec="l.spec" />
 
-    <!-- Гос номер (только если полный) -->
-    <template v-if="plateTexts">
-      <coupon-text v-for="(t, i) in plateTexts" :key="i" :spec="t" />
-    </template>
+      <!-- Телефон -->
+      <coupon-text :spec="phoneText" />
 
-    <!-- Код подписи -->
-    <coupon-text v-if="codeText" :spec="codeText" />
+      <!-- Гос номер (только если полный) -->
+      <template v-if="plateTexts">
+        <coupon-text v-for="(t, i) in plateTexts" :key="i" :spec="t" />
+      </template>
+
+      <!-- Код подписи -->
+      <coupon-text v-if="codeText" :spec="codeText" />
+    </g>
   </svg>
 </template>
